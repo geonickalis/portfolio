@@ -46,12 +46,24 @@ body{
     gap:8px;
 }
 
+/* ---------- SPOTIFY ---------- */
+
+.spotify{
+    padding-inline:20%;
+    padding-block:2%;
+}
+
 /* Mobile */
 @media (max-width:768px){
     .gallery{
         grid-template-columns:1fr;
         gap:6px;
         padding:6px;
+    }
+
+    .spotify{
+        padding-inline:5%;
+        padding-block:5%;
     }
 }
 
@@ -155,6 +167,20 @@ body{
     </div>
 </section>
 
+<section class="spotify">
+    <iframe
+    data-testid="embed-iframe"
+    style="border-radius:12px"
+    src="https://open.spotify.com/embed/artist/3m5HTbYnpREIh9kdEcHlPf?utm_source=generator&si=570ca639ec8743ec"
+    width="100%"
+    height="352"
+    frameBorder="0"
+    allowfullscreen=""
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy">
+    </iframe>
+</section>
+
 <script>
 
 /* FADE-IN ON SCROLL */
@@ -180,6 +206,8 @@ const observer = new IntersectionObserver((entries)=>{
 images.forEach(image=>{
     observer.observe(image);
 });
+
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/3m5HTbYnpREIh9kdEcHlPf?utm_source=generator&si=570ca639ec8743ec" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 </script>
 
