@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<head> 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
 <title>Portfolio</title>
 
@@ -48,7 +51,7 @@ body{
 
 /* ---------- SPOTIFY ---------- */
 
-.spotify{
+.social{
     padding-inline:20%;
     padding-block:2%;
 }
@@ -61,7 +64,7 @@ body{
         padding:6px;
     }
 
-    .spotify{
+    .social{
         padding-inline:5%;
         padding-block:5%;
     }
@@ -167,7 +170,31 @@ body{
     </div>
 </section>
 
-<section class="spotify">
+<section class="hero">
+
+    <video
+        id="2018"
+        autoplay
+        muted
+        playsinline
+        onclick="replayVideo()"
+        <source src="2018.mp4" type="video/mp4" loading="lazy">
+
+    </video>
+
+</section>
+
+<section class="social">
+    <iframe  
+     src="https://www.youtube-nocookie.com/embed/imHyyPFjh9E?si=gLugXcSY16lvcIfR"
+     title="YouTube video player"
+     frameborder="0" allow="accelerometer;autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+     referrerpolicy="strict-origin-when-cross-origin"
+     allowfullscreen>
+    </iframe>
+</section>
+
+<section class="social">
     <iframe
     data-testid="embed-iframe"
     style="border-radius:12px"
@@ -206,6 +233,12 @@ const observer = new IntersectionObserver((entries)=>{
 images.forEach(image=>{
     observer.observe(image);
 });
+
+function replayVideo() {
+  var video = document.getElementById("2018");
+  video.currentTime = 0; // Rewind to start
+  video.play();          // Start playing
+}
 
 </script>
 
