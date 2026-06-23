@@ -104,15 +104,8 @@ body{
 
 <section class="hero">
 
-    <video
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto">
-
-        <source rel="preload" as="video" src="FINALSMALL.mp4" type="video/mp4" loading="eager">
-
+    <video id="player" autoplay muted playsinline preload="auto">
+        <source rel="preload" as="video" src="videos/video1.mp4" type="video/mp4" loading="eager">
     </video>
 
 </section>
@@ -170,15 +163,21 @@ body{
     </div>
 </section>
 
-<section class="hero">
+<!-- 2018 VIDEO -->
+
+<section>
 
     <video
+        width="100%"
+        height="100%"
+        object-fit="contain"
+        display="block"
         id="2018"
         autoplay
         muted
         playsinline
         onclick="replayVideo()"
-        <source src="2018.mp4" type="video/mp4" loading="lazy">
+        <source src="videos/2018.mp4" type="video/mp4" loading="lazy">
 
     </video>
 
@@ -186,6 +185,8 @@ body{
 
 <section class="social">
     <iframe  
+     width="100%"
+     height="100%"
      src="https://www.youtube-nocookie.com/embed/imHyyPFjh9E?si=gLugXcSY16lvcIfR"
      title="YouTube video player"
      frameborder="0" allow="accelerometer;autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -193,6 +194,8 @@ body{
      allowfullscreen>
     </iframe>
 </section>
+
+<!-- spotify -->
 
 <section class="social">
     <iframe
@@ -239,6 +242,35 @@ function replayVideo() {
   video.currentTime = 0; // Rewind to start
   video.play();          // Start playing
 }
+
+const videos = [
+    "video1.mp4",
+    "video2.mp4",
+    "video3.mp4"
+];
+
+let current = 0;
+const player = document.getElementById("player");
+
+player.addEventListener("ended", () => {
+    current = (current + 1) % videos.length; // wrap back to start
+    player.src = videos[current];
+    player.play();
+});
+
+const observervid = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            player.play().catch(() => {});
+        } else {
+            player.pause();
+        }
+    });
+}, {
+    threshold: 0.05 
+});
+
+observervid.observe(player);
 
 </script>
 
