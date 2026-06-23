@@ -49,9 +49,16 @@ body{
     gap:8px;
 }
 
+/* ---------- YOUTUBE ---------- */
+
+.youtube{
+    padding-inline:20%;
+    padding-block:6px;
+}
+
 /* ---------- SPOTIFY ---------- */
 
-.social{
+.spotify{
     padding-inline:20%;
     padding-block:2%;
 }
@@ -64,9 +71,13 @@ body{
         padding:6px;
     }
 
-    .social{
+    .spotify{
         padding-inline:5%;
         padding-block:5%;
+    }
+
+    .youtube{
+        padding-inline:5%;
     }
 }
 
@@ -119,8 +130,8 @@ body{
 
 <section class="hero">
 
-    <video id="player" autoplay muted playsinline preload="auto">
-        <source rel="preload" as="video" src="videos/video1.mp4" type="video/mp4" loading="eager">
+    <video id="player" autoplay muted playsinline>
+        <source src="videos/video1.mp4" type="video/mp4">
     </video>
 
 </section>
@@ -198,7 +209,7 @@ body{
 
 </section>
 
-<section class="social">
+<section class="youtube">
     <div class="video-container">
         <iframe  
          src="https://www.youtube-nocookie.com/embed/imHyyPFjh9E?si=gLugXcSY16lvcIfR&showinfo=0"
@@ -212,7 +223,7 @@ body{
 
 <!-- spotify -->
 
-<section class="social">
+<section class="spotify">
     <iframe
     data-testid="embed-iframe"
     style="border-radius:12px"
@@ -267,11 +278,25 @@ const videos = [
 let current = 0;
 const player = document.getElementById("player");
 
+const preloadVideo = document.createElement("video");
+preloadVideo.preload = "auto";
+
+function preloadNext() {
+  const next = (current + 1) % videos.length;
+  preloadVideo.src = videos[next];
+  preloadVideo.load();
+}
+
+player.src = videos[current];
+preloadNext();
+
 player.addEventListener("ended", () => {
     current = (current + 1) % videos.length; // wrap back to start
     player.src = videos[current];
     player.play();
 });
+
+preloadNext();
 
 const observervid = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
