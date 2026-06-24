@@ -134,7 +134,7 @@ body{
 /* ---------- POINTER 2018 ---------- */
 
 #vid2018 {
-    cursor: url("images/reload.png") 4 12, auto;
+    cursor: url("images/reload.png"), auto;
 }
 
 /* ---------- GALLERY ---------- */
@@ -406,6 +406,21 @@ const placeholder = document.getElementById('placeholder');
     videoload.addEventListener('canplay', () => {
         videoload.play().catch(() => {});
     });
+
+
+const observerVideo = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      videoload.play().catch(() => {});
+    } else {
+      videoload.pause();
+    }
+  });
+}, {
+  threshold: 0.05
+});
+
+observerVideo.observe(videoload);
 
 </script>
 
