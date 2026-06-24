@@ -65,20 +65,7 @@ body{
 
 
 /* ---------- LOADING BAR ---------- */
-.progress {
-    width: 240px;
-    height: 4px;
-    background: rgba(255,255,255,.2);
-    border-radius: 999px;
-    overflow: hidden;
-}
 
-.progress-fill {
-    width: 0%;
-    height: 100%;
-    background: white;
-    transition: width .2s linear;
-}
 /* ---------- SCROLL DOWN ---------- */
 
 .scroll-arrow {
@@ -242,11 +229,7 @@ body{
 
 <section class="hero">
 
-    <div class="video-placeholder" id="placeholder">
-       <div class="progress">
-        <div class="progress-fill" id="progressFill"></div>
-       </div>
-    </div>
+    <div class="video-placeholder" id="placeholder"></div>
     
     <video id="heroVideo" autoplay muted playsinline loop preload="auto">
         <source src="videos/main.mp4" type="video/mp4">
@@ -423,17 +406,6 @@ const placeholder = document.getElementById('placeholder');
     videoload.addEventListener('canplay', () => {
         videoload.play().catch(() => {});
     });
-
-const fill = document.getElementById('progressFill');
-
-videoload.addEventListener('progress', () => {
-    if (videoload.buffered.length > 0) {
-        const percent =
-            (videoload.buffered.end(videoload.buffered.length - 1) / videoload.duration) * 100;
-
-        fill.style.width = Math.min(percent, 100) + '%';
-    }
-});
 
 </script>
 
