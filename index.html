@@ -63,8 +63,8 @@ body{
     transition: opacity 0.6s ease;
 }
 
-/* ---------- LOADING BAR ---------- */
 
+/* ---------- LOADING BAR ---------- */
 .progress {
     width: 240px;
     height: 4px;
@@ -79,7 +79,6 @@ body{
     background: white;
     transition: width .2s linear;
 }
-
 /* ---------- SCROLL DOWN ---------- */
 
 .scroll-arrow {
@@ -91,7 +90,6 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-
 
     width: 70px;
     height: 40px;
@@ -244,10 +242,10 @@ body{
 
 <section class="hero">
 
-    <div class="video-placeholder" id="placeholder"></div>
-
-    <div class="progress">
-    <div class="progress-fill" id="progressFill"></div>
+    <div class="video-placeholder" id="placeholder">
+       <div class="progress">
+        <div class="progress-fill" id="progressFill"></div>
+       </div>
     </div>
     
     <video id="heroVideo" autoplay muted playsinline loop preload="auto">
@@ -414,7 +412,7 @@ function scrollToVideo() {
 }
 
 const videoload = document.getElementById('heroVideo');
-    const placeholder = document.getElementById('placeholder');
+const placeholder = document.getElementById('placeholder');
 
     // Hide placeholder when playback actually starts
     videoload.addEventListener('playing', () => {
@@ -428,10 +426,10 @@ const videoload = document.getElementById('heroVideo');
 
 const fill = document.getElementById('progressFill');
 
-heroVideo.addEventListener('progress', () => {
-    if (video.buffered.length > 0) {
+videoload.addEventListener('progress', () => {
+    if (videoload.buffered.length > 0) {
         const percent =
-            (video.buffered.end(video.buffered.length - 1) / video.duration) * 100;
+            (videoload.buffered.end(videoload.buffered.length - 1) / videoload.duration) * 100;
 
         fill.style.width = Math.min(percent, 100) + '%';
     }
