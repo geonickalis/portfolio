@@ -26,6 +26,112 @@ body{
     overflow-x:hidden;
 }
 
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full-screen video */
+    overflow: hidden;
+}
+
+.video-placeholder {
+        position: absolute;
+        inset: 0;
+        background-image: url('images/loading.jpg');
+        background-size: cover;
+        background-position: center;
+        filter: blur(20px);
+        transform: scale(1.1); /* prevents blur edge artifacts */
+        transition: opacity 0.5s ease;
+        z-index: 1;
+    }
+
+  .video-placeholder.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+ /* ---------- Loader ---------- */
+
+    /* Loader overlay */
+.loader-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    transition: opacity 0.6s ease;
+}
+
+/* ---------- LOADING BAR ---------- */
+
+.progress {
+    width: 240px;
+    height: 4px;
+    background: rgba(255,255,255,.2);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: white;
+    transition: width .2s linear;
+}
+
+/* ---------- SCROLL DOWN ---------- */
+
+.scroll-arrow {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    width: 70px;
+    height: 40px;
+    border: none;
+    border-radius: 30px;
+    
+    background: rgba(255,255,255,0.2);
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.scroll-arrow:hover {
+    background: rgba(255,255,255,0.35);
+    transform: translateX(-50%) scale(1.1);
+}
+
+.scroll-arrow span {
+    transform: translateY(-8px); 
+}
+
+.scroll-arrow2018 {
+    
+    float: left;
+    margin-left: 20%;
+    margin-bottom: -4%;
+    position: relative;
+    width: 12%;
+    aspect-ratio: 2 / 1;
+    transform: translateY(-112%);
+    border: none;
+       
+    color: white;
+    cursor: pointer;
+    opacity: 0;
+}
+
 /* ---------- HERO VIDEO ---------- */
 
 .hero{
@@ -38,6 +144,12 @@ body{
     height:100%;
     object-fit:cover;
     display:block;
+}
+
+/* ---------- POINTER 2018 ---------- */
+
+#vid2018 {
+    cursor: url("images/reload.png") 4 12, auto;
 }
 
 /* ---------- GALLERY ---------- */
@@ -110,12 +222,13 @@ body{
 
 /* Youtube video */
 
-.video-container {
+.video-container-youtube{
   position: relative;
+  margin-top: 10px;
   padding-bottom: 56.25%; /* 16:9 */
   height: 0;
 }
-.video-container iframe {
+.video-container-youtube iframe {
   position: absolute;
   top: 0;
   left: 0;
@@ -131,9 +244,19 @@ body{
 
 <section class="hero">
 
-    <video id="player" autoplay muted playsinline>
-        <source src="videos/video1.mp4" type="video/mp4">
+    <div class="video-placeholder" id="placeholder"></div>
+
+    <div class="progress">
+    <div class="progress-fill" id="progressFill"></div>
+    </div>
+    
+    <video id="heroVideo" autoplay muted playsinline loop preload="auto">
+        <source src="videos/main.mp4" type="video/mp4">
     </video>
+
+    <button class="scroll-arrow" onclick="scrollPastVideo()">
+        <span>&#128899;</span>
+    </button>
 
 </section>
 
@@ -199,7 +322,7 @@ body{
         height="100%"
         object-fit="contain"
         display="block"
-        id="2018"
+        id="vid2018"
         autoplay
         muted
         playsinline
@@ -208,10 +331,12 @@ body{
 
     </video>
 
+    <button class="scroll-arrow2018" onclick="scrollIntoView()">
+    </button>
 </section>
 
 <section class="youtube">
-    <div class="video-container">
+    <div id="youtube" class="video-container-youtube">
         <iframe  
          src="https://www.youtube-nocookie.com/embed/imHyyPFjh9E?si=gLugXcSY16lvcIfR&showinfo=0"
          title="YouTube video player"
@@ -265,53 +390,52 @@ images.forEach(image=>{
 });
 
 function replayVideo() {
-  var video = document.getElementById("2018");
+  var video = document.getElementById("vid2018");
   video.currentTime = 0; // Rewind to start
   video.play();          // Start playing
 }
 
-const videos = [
-    "videos/video1.mp4",
-    "videos/video2.mp4",
-    "videos/video3.mp4"
-];
+/* SCROLL */
 
-let current = 0;
-const player = document.getElementById("player");
+function scrollPastVideo() {
+    const videoSection = document.getElementById('heroVideo');
 
-const preloadVideo = document.createElement("video");
-preloadVideo.preload = "auto";
-
-function preloadNext() {
-  const next = (current + 1) % videos.length;
-  preloadVideo.src = videos[next];
-  preloadVideo.load();
+    window.scrollTo({
+        top: 1000,
+        behavior: 'smooth'
+    });
 }
 
-player.src = videos[current];
-preloadNext();
-
-player.addEventListener("ended", () => {
-    current = (current + 1) % videos.length; // wrap back to start
-    player.src = videos[current];
-    player.play();
-});
-
-preloadNext();
-
-const observervid = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            player.play().catch(() => {});
-        } else {
-            player.pause();
-        }
+function scrollToVideo() {
+    document.getElementById('youtube').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
     });
-}, {
-    threshold: 0.05 
-});
+}
 
-observervid.observe(player);
+const videoload = document.getElementById('heroVideo');
+    const placeholder = document.getElementById('placeholder');
+
+    // Hide placeholder when playback actually starts
+    videoload.addEventListener('playing', () => {
+        placeholder.classList.add('hidden');
+    });
+
+    // Fallback in case video is already ready
+    videoload.addEventListener('canplay', () => {
+        videoload.play().catch(() => {});
+    });
+
+const fill = document.getElementById('progressFill');
+
+heroVideo.addEventListener('progress', () => {
+    if (video.buffered.length > 0) {
+        const percent =
+            (video.buffered.end(video.buffered.length - 1) / video.duration) * 100;
+
+        fill.style.width = Math.min(percent, 100) + '%';
+    }
+});
 
 </script>
 
