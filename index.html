@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head> 
 <head>
@@ -75,6 +75,44 @@ canvas {
         opacity: 0;
         pointer-events: none;
     }
+
+ /* ---------- PAUSE BUTTON ---------- */
+
+ .video-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 40px;
+  height: 40px;
+
+  padding: 10px 16px;
+  border: none;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  cursor: pointer;
+  font-size: 30px;
+  
+
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.video-toggle:hover {
+  background: rgba(255,255,255,0.35);
+  transform: scale(1.1);
+}
+
+.video-toggle .icon {
+  transform: translate(0px, -2px); 
+}
 
  /* ---------- Loader ---------- */
 
@@ -186,6 +224,15 @@ canvas {
 
 /* Mobile */
 @media (max-width:768px){
+    .hero{
+     width:100%;
+     height:100%;
+    }
+
+    .hero video{
+    object-fit:contain;
+    }
+
     .gallery{
         grid-template-columns:1fr;
         gap:6px;
@@ -241,6 +288,7 @@ canvas {
   padding-bottom: 56.25%; /* 16:9 */
   height: 0;
 }
+
 .video-container-youtube iframe {
   position: absolute;
   top: 0;
@@ -267,6 +315,10 @@ canvas {
     <video id="heroVideo" autoplay muted playsinline loop preload="auto">
         <source src="videos/main.mp4" type="video/mp4">
     </video>
+
+    <button id="videoToggle" class="video-toggle" aria-label="Pause video">
+        <span class="icon" aria-hidden="true">&#10074;&#10074;</span>
+    </button>
 
     <button class="scroll-arrow" onclick="scrollPastVideo()">
         <span>&#128899;</span>
@@ -384,6 +436,8 @@ canvas {
     </div>
 
 </section>
+
+
 
 <script>
 
@@ -642,6 +696,23 @@ function animate(now) {
 }
 
 animate(performance.now());
+
+//pause button
+const pausebutton = document.getElementById('videoToggle');
+const icon = pausebutton.querySelector('.icon');
+
+pausebutton.addEventListener('click', () => {
+  if (videoload.paused) {
+    videoload.play();
+    icon.textContent = '❚❚';
+    pausebutton.setAttribute('aria-label', 'Pause video');
+  } else {
+    videoload.pause();
+    icon.textContent = '▶';
+    pausebutton.setAttribute('aria-label', 'Play video');
+  }
+});
+
 
 </script>
 
