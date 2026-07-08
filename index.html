@@ -21,9 +21,16 @@ html{
     scroll-behavior:smooth;
 }
 
+@font-face {
+font-family: "neue";
+src: url("fonts/neue.otf") format("opentype");
+}
+
 body{
     background:#000;
     overflow-x:hidden;
+    font-family:neue;
+    color:white;
 }
 
 canvas {
@@ -222,6 +229,121 @@ canvas {
     padding-block:2%;
 }
 
+
+/* ---------- WEB ----------- */
+
+.web-section{
+    width:100%;
+    padding-inline: 15%;
+    padding-top:180px;
+    padding-bottom:200px;
+    text-align:center;
+}
+
+.web-section h1{
+    font-size:42px;
+    letter-spacing:4px;
+    margin-bottom:10px;
+    color:#E8E8E8;
+    font-weight: 200;
+}
+
+.web-section h2{
+    font-size:18px;
+    letter-spacing:2px;
+    color:#d6d6d6;
+    margin-bottom:50px;
+    font-weight: 200;
+    }
+
+.web-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    }
+
+.web-card{
+    text-align:center;
+}
+
+.web-card a.image-link{
+    display:block;
+    overflow:hidden;
+    background:#111;
+}
+
+.web-card img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    transition:.35s ease;
+}
+
+.web-card:hover img{
+    transform:scale(1.05);
+}
+
+.web-card a.site-link{
+    display:inline-block;
+    margin-top:18px;
+    color:#d6d6d6;
+    text-decoration:none;
+    font-size:13px;
+    letter-spacing:1px;
+    transition:.3s;
+}
+
+.web-card a.site-link:hover{
+    color:#bcbcbc;
+}
+
+.web-card p{
+    margin-top:18px;
+    font-size:16px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:#d6d6d6;
+}
+
+/* Grid fix */
+@media(max-width:1800px){
+
+    .web-grid{
+    grid-template-columns:repeat(2,1fr);
+    padding-inline: 20%;
+
+    }
+
+    .web-card a.site-link{
+    display:inline-block;
+    margin-top:18px;
+    color:#d6d6d6;
+    text-decoration:none;
+    font-size:10px;
+    letter-spacing:1px;
+    transition:.3s;
+}
+}
+    
+@media(max-width:1000px){
+
+     .web-grid{
+       grid-template-columns:1fr;
+       padding-inline: 15%;
+      }
+
+    .web-card a.site-link{
+        display:inline-block;
+        margin-top:18px;
+        color:#d6d6d6;
+        text-decoration:none;
+        font-size:13px;
+        letter-spacing:1px;
+        transition:.3s;
+    }
+
+}
+
 /* Mobile */
 @media (max-width:768px){
     .hero{
@@ -249,8 +371,9 @@ canvas {
     }
 
     .scroll-arrow{
-    display: none;
-  }
+        display: none;
+    }
+
 }
 
 /* ---------- IMAGES ---------- */
@@ -280,6 +403,7 @@ canvas {
     transform:translateY(0);
 }
 
+
 /* Youtube video */
 
 .video-container-youtube{
@@ -297,6 +421,90 @@ canvas {
   height: 100%;
 }
 
+/* ---------- CAROUSEL ---------- */
+
+.image-carousel{
+    position:relative;
+    overflow:hidden;
+}
+
+.image-carousel .nav{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    padding-bottom: 2px;
+
+    width:42px;
+    height:42px;
+
+    border:none;
+    border-radius:50%;
+
+    background:rgba(255,255,255,.15);
+    color:white;
+    cursor:pointer;
+
+    backdrop-filter:blur(6px);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    transition:.3s;
+
+    z-index:5;
+}
+
+.image-carousel:hover .nav{
+    opacity:1;
+}
+
+.image-carousel .nav:hover{
+    background:rgba(255,255,255,.3);
+}
+
+.image-carousel .left{
+    left:10px;
+    padding-right: 2px;
+}
+
+.image-carousel .right{
+    right:10px;
+    padding-left: 2px;
+}
+
+/* ---prjinfo button--- */
+
+.image-carousel .prjinfo {
+    position: absolute;
+    bottom: 1%;
+    left: 4%;
+    transform: translateX(-5%);
+    padding: 2%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 35px;
+    border: none;
+    border-radius: 60px;
+    
+    background: rgba(255,255,255,0.0);
+    color: #E8E8E8;
+    font-family: "neue"; 
+    z-index: 5;
+    
+    /*backdrop-filter: blur(5px); */
+    text-shadow: 0px 0px 20px #000000;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.image-carousel:hover .prjinfo {
+    opacity:1;
+}
 
 </style>
 </head>
@@ -329,23 +537,243 @@ canvas {
 <!-- IMAGE GALLERY -->
 
 <section class="gallery">
+   
+<!-- CAROUSEL 1 -->
+    <div class="image-carousel"
+           data-images="images/pla_1.jpg, images/pla_2.jpg, images/pla_3.jpg, images/pla_4.jpg,
+                images/pla_5.jpg, images/pla_6.jpg, images/pla_7.jpg">
 
-    <div class="image-wrapper">
-        <img src="images/image1.jpg" loading="lazy" alt="">
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRJ.PLATRITHIAS // ITHACA - GREECE @KIMA ARCHITECTS // JAN.2026 </button>
+
+      <div class="image-wrapper">
+        <img src="images/pla_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
     </div>
 
-    <div class="image-wrapper">
-        <img src="images/image2.jpg" loading="lazy" alt="">
+<!-- CAROUSEL 2 -->
+    <div class="image-carousel"
+           data-images="images/met_1.jpg,images/met_2.jpg,images/met_3.jpg,images/met_4.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRJ.METAMORFOSIS // CORINTH - GREECE @KIMA ARCHITECTS // DEC.2023 </button>
+
+      <div class="image-wrapper">
+        <img src="images/met_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
     </div>
 
-    <div class="image-wrapper">
-        <img src="images/image3.jpg" loading="lazy" alt="">
+<!-- CAROUSEL 3 -->
+    <div class="image-carousel"
+           data-images="images/the_1.jpg,images/the_2.jpg,images/the_3.jpg,images/the_4.jpg,images/the_5.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRJ.THERMO // ACCONIA DI CURINGA - ITALY @KIMA ARCHITECTS // NOV.2024 </button>
+
+      <div class="image-wrapper">
+        <img src="images/the_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
     </div>
 
-    <div class="image-wrapper">
-        <img src="images/image4.jpg" loading="lazy" alt="">
+        <!-- CAROUSEL 4 -->
+    <div class="image-carousel"
+           data-images="images/oak_1.jpg,images/oak_2.jpg,images/oak_3.jpg,images/oak_4.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRJ.OAKA // ATHENS - GREECE @KIMA ARCHITECTS // OCT.2025 </button>
+
+      <div class="image-wrapper">
+        <img src="images/oak_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
     </div>
 
+
+    <!-- CAROUSEL 5 -->
+    <div class="image-carousel"
+           data-images="images/sil_1.jpg,images/sil_2.jpg,images/sil_3.jpg,images/sil_4.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRJ.SILVER MEMORIES // VILLENEUVE - ITALY @KIMA ARCHITECTS // JUN.2024 </button>
+
+      <div class="image-wrapper">
+        <img src="images/sil_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
+    </div>
+
+       <!-- CAROUSEL 6 -->
+    <div class="image-carousel"
+           data-images="images/vas_1.jpg,images/vas_2.jpg,images/vas_3.jpg,images/vas_4.jpg,
+                        images/vas_5.jpg,images/vas_6.jpg,images/vas_7.jpg,images/vas_8.jpg,images/vas_9.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRJ.VASILIKO // CORINTH - GREECE @KIMA ARCHITECTS // OCT.2024 </button>
+
+      <div class="image-wrapper">
+        <img src="images/vas_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
+    </div>
+
+     <!-- CAROUSEL 7 -->
+    <div class="image-carousel"
+           data-images="images/ski_1.jpg,images/ski_2.jpg,images/ski_3.jpg,images/ski_4.jpg,images/ski_5.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRJ.SKI // LAKE MÝVATN - ICELAND @KIMA ARCHITECTS // MAY.2024 </button>
+
+      <div class="image-wrapper">
+        <img src="images/ski_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
+    </div>
+
+ <!-- CAROUSEL 8 -->
+    <div class="image-carousel"
+           data-images="images/vic_1.jpg,images/vic_2.jpg,images/vic_3.jpg,images/vic_4.jpg,images/vic_5.jpg,images/vic_6.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRJ.VICTORIA // ATHENS - GREECE @KIMA ARCHITECTS // AUG.2024 </button>
+
+      <div class="image-wrapper">
+        <img src="images/vic_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
+    </div> 
+
+<!-- CAROUSEL 9 -->
+    <div class="image-carousel"
+           data-images="images/dyn_1.jpg,images/dyn_2.jpg,images/dyn_3.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRODUCT.DYNAUDIO LYD 7 // NON COMMERCIAL </button>
+
+      <div class="image-wrapper">
+        <img src="images/dyn_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
+    </div> 
+
+<!-- CAROUSEL 10 -->
+    <div class="image-carousel"
+           data-images="images/ckp_1.jpg,images/ckp_2.jpg,images/ckp_3.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRODUCT.DEFY EAU DE FARFUM // NON COMMERCIAL </button>
+
+      <div class="image-wrapper">
+        <img src="images/ckp_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
+    </div> 
+
+<!-- CAROUSEL 11 -->
+    <div class="image-carousel"
+           data-images="images/lam_1.jpg,images/lam_2.jpg,images/lam_3.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRODUCT.EDISON LAMP // NON COMMERCIAL </button>
+
+      <div class="image-wrapper">
+        <img src="images/lam_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
+    </div> 
+
+<!-- CAROUSEL 12 -->
+    <div class="image-carousel"
+           data-images="images/2da_1.jpg,images/2da_2.jpg,images/2da_3.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRJ.PUBLIC EVENTS // PRINTABLE MEDIA</button>
+
+      <div class="image-wrapper">
+        <img src="images/2da_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
+    </div> 
+
+<!-- CAROUSEL 13 -->
+    <div class="image-carousel"
+           data-images="images/arc_1.jpg,images/arc_2.jpg,images/arc_3.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRJ.ARCHVIZ // NON COMMERCIAL</button>
+
+      <div class="image-wrapper">
+        <img src="images/arc_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
+    </div> 
+
+<!-- CAROUSEL 14 -->
+    <div class="image-carousel"
+           data-images="images/nat_1.jpg,images/nat_2.jpg,images/nat_3.jpg,images/nat_4.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRJ.NATURE // NON COMMERCIAL</button>
+
+      <div class="image-wrapper">
+        <img src="images/nat_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
+    </div> 
+
+<!-- CAROUSEL 15 PIC ONLY -->
+    <div class="image-carousel"
+           data-images="images/mus_1.jpg">
+           
+           <button class="prjinfo">PRJ.UNDER MY SKIN // REMIX COVER ART</button>
+      <div class="image-wrapper">
+        <img src="images/mus_1.jpg" loading="lazy">
+      </div>
+         
+     </div> 
+
+<!-- CAROUSEL 16 PIC ONLY -->
+    <div class="image-carousel"
+        data-images="images/mus_2.jpg">
+
+        <button class="prjinfo">PRJ.TOP TO BOTTOM // SINGLE RELEASE COVER ART</button>
+      <div class="image-wrapper">
+        <img src="images/mus_2.jpg" loading="lazy">
+      </div>
+      
+    </div> 
+
+<!-- IMAGES 
     <div class="image-wrapper">
         <img src="images/image5.jpg" loading="lazy" alt="">
     </div>
@@ -377,7 +805,71 @@ canvas {
     <div class="image-wrapper">
         <img src="images/image12.jpg" loading="lazy" alt="">
     </div>
+
+    -->
 </section>
+
+<!-- WEB -->
+
+<section class="web-section">
+
+<h1>WEB</h1>
+<h2>CURRENTLY MAINTAINING</h2>
+
+<div class="web-grid">
+
+<div class="web-card">
+
+<a class="image-link" href="https://www.dimitrissoukaras.com/" target="_blank">
+<img src="images/web1.jpg" alt="">
+</a>
+
+<a class="site-link" href="https://www.dimitrissoukaras.com/" target="_blank">
+WWW.DIMITRISSOUKARAS.COM
+</a>
+
+</div>
+
+<div class="web-card">
+
+<a class="image-link" href="https://www.pkmusik.com/" target="_blank">
+<img src="images/web2.jpg" alt="">
+</a>
+
+<a class="site-link" href="https://www.pkmusik.com/" target="_blank">
+WWW.PKMUSIK.COM
+</a>
+
+</div>
+
+<div class="web-card">
+
+<a class="image-link" href="https://www.manhattanvibes.com/" target="_blank">
+<img src="images/web3.jpg" alt="">
+</a>
+
+<a class="site-link" href="https://www.manhattanvibes.com/" target="_blank">
+WWW.MANHATTANVIBES.COM
+</a>
+
+</div>
+
+<div class="web-card">
+
+<a class="image-link" href="https://www.petrosklampanis.com/" target="_blank">
+<img src="images/web4.jpg" alt="">
+</a>
+
+<a class="site-link" href="https://www.petrosklampanis.com/" target="_blank">
+WWW.PETROSKLAMPANIS.COM
+</a>
+
+</div>
+
+</div>
+
+</section>
+
 
 <!-- 2018 VIDEO -->
 
@@ -389,7 +881,6 @@ canvas {
         object-fit="contain"
         display="block"
         id="vid2018"
-        autoplay
         muted
         playsinline
         onclick="replayVideo()"
@@ -713,6 +1204,85 @@ pausebutton.addEventListener('click', () => {
   }
 });
 
+//autoplay vid2018
+const vid2018 = document.getElementById('vid2018');
+
+const observer2018 = new IntersectionObserver((entries2018) => {
+    entries2018.forEach(entry => {
+        if (entry.intersectionRatio >= 0.5) {
+            vid2018.play().catch(() => {});
+            observer2018.unobserve(vid2018);
+        }
+    });
+}, {
+    threshold: 0.75
+});
+
+observer2018.observe(vid2018);
+
+
+// ---------- CAROUSEL LOGIC ----------
+
+document.querySelectorAll(".image-carousel").forEach(carousel => {
+
+    const img = carousel.querySelector("img");
+
+    const images = carousel.dataset.images
+        .split(",")
+        .map(path => path.trim());
+
+    let index = 0;
+
+    carousel.querySelector(".left").addEventListener("click", () => {
+
+        index--;
+
+        if(index < 0)
+            index = images.length - 1;
+
+        img.style.opacity = 0;
+
+setTimeout(() => {
+
+    img.src = images[index];
+
+},150);
+
+img.onload = () => {
+
+    img.style.opacity = 1;
+    img.style.transform = "translateY(0)";
+
+};
+
+    });
+
+    carousel.querySelector(".right").addEventListener("click", () => {
+
+        index++;
+
+        if(index >= images.length)
+            index = 0;
+
+        img.style.opacity = 0;
+
+img.style.opacity = 0;
+
+setTimeout(() => {
+
+    img.src = images[index];
+
+},150);
+
+img.onload = () => {
+
+    img.style.opacity = 1;
+    img.style.transform = "translateY(0)";
+
+};
+    });
+
+});
 
 </script>
 
