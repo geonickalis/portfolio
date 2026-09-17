@@ -209,10 +209,11 @@ canvas {
 /* ---------- GALLERY ---------- */
 
 .gallery{
-    padding:8px;
+    padding:16px;
+     padding-inline:8%;
     display:grid;
     grid-template-columns:repeat(2, 1fr);
-    gap:8px;
+    gap:16px;
 }
 
 /* ---------- YOUTUBE ---------- */
@@ -968,7 +969,7 @@ function scrollPastVideo() {
     const videoSection = document.getElementById('heroVideo');
 
     window.scrollTo({
-        top: 1000,
+        top: 960,
         behavior: 'smooth'
     });
 }
