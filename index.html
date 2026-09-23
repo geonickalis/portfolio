@@ -33,6 +33,8 @@ body{
     color:white;
 }
 
+
+
 /* ---------- VIDEO ---------- */
  video {
         position: relative;
@@ -75,6 +77,36 @@ body{
             cursor: pointer;
         }
 
+/* ---------- START BUTTON ---------- */
+#startButton {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 110;
+    font-family:neue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 200px;
+    height: 80px;
+    border: none;
+    border-radius: 40px;
+    
+    background: rgba(255,255,255,0.2);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+#startButton:hover {
+    background: rgba(255,255,255,0.35);
+    transform: translateX(-50%) scale(1.1);
+}        
 /* ---------- SCROLL ARROW ---------- */
 .scroll-arrow {
     position: absolute;
@@ -388,8 +420,6 @@ body{
 
 <!-- CANVAS -->
 
-
-
 <!-- FULLSCREEN VIDEO -->
 
 <section>
@@ -413,7 +443,7 @@ body{
     </button>
 
     <button id="startButton">
-        Start Videos
+    start showreel
     </button>
 
 </section>
