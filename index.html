@@ -35,7 +35,7 @@ body{
 
 img {
     border-radius:12px;
-}
+    }
 
 /* ---------- VIDEO ---------- */
  video {
@@ -145,15 +145,29 @@ img {
 }
 /* ---------- GALLERY ---------- */
 
-.gallery{
-    padding:10px;
+.gallery1{
+    padding:0px 20% 10px 20%;
+    display:grid;
+    grid-template-columns:repeat(1, 1fr);
+    gap:10px;
+    }
+
+.gallery2{
+    padding:0px 10px 10px 10px;
     display:grid;
     grid-template-columns:repeat(2, 1fr);
     gap:10px;
     }
 
-.gallerytriple{
-    padding:10px;
+.gallery3{
+    padding:0px 10px 10px 10px;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:10px;
+}
+
+.gallery4{
+    padding:0px 10px 10px 10px;
     display:grid;
     grid-template-columns:repeat(4, 1fr);
     gap:10px;
@@ -163,16 +177,37 @@ img {
 
 .spotify{
     padding-inline:20%;
-    padding-block:2%;
+    padding-bottom:2%;
 }
+
+.spotify-section{
+    width:100%;
+    padding-top:140px;
+    text-align:center;
+}
+
+.spotify-section h1{
+    font-size:42px;
+    letter-spacing:4px;
+    margin-bottom:10px;
+    color:#E8E8E8;
+    font-weight: 200;
+}
+
+.spotify-section h2{
+    font-size:18px;
+    letter-spacing:2px;
+    color:#d6d6d6;
+    margin-bottom:50px;
+    font-weight: 200;
+    }
 
 /* ---------- WEB ----------- */
 
 .web-section{
     width:100%;
     padding-inline: 15%;
-    padding-top:180px;
-    padding-bottom:200px;
+    padding-top:140px;
     text-align:center;
 }
 
@@ -282,17 +317,28 @@ img {
 
 /* Mobile */
 @media (max-width:768px){
-   
-    .gallery{
+     .gallery1{
         grid-template-columns:repeat(1,1fr);
         gap:6px;
-        padding:6px;
+        padding:0px 6px 6px 6px;
+     }
+
+    .gallery2{
+        grid-template-columns:repeat(1,1fr);
+        gap:6px;
+        padding:0px 6px 6px 6px;
     }
 
-    .gallerytriple{
+    .gallery3{
+        grid-template-columns:repeat(1,1fr);
+        gap:6px;
+        padding:0px 6px 6px 6px;
+    }
+
+    .gallery4{
         grid-template-columns:repeat(2,1fr);
         gap:6px;
-        padding:6px;
+        padding:0px 6px 6px 6px;
     }
 
     .spotify{
@@ -450,7 +496,7 @@ img {
 
 <!-- IMAGE GALLERY -->
 
-<section class="gallery">
+<section class="gallery2" style="padding-top: 8px;">
   
 <!-- CAROUSEL 9 -->
     <div class="image-carousel"
@@ -499,8 +545,8 @@ img {
 
 <!-- CAROUSEL 12 -->
     <div class="image-carousel"
-           data-images="images/2da_1.jpg,images/2da_2.jpg,images/2da_3.jpg">
-
+           data-images="images/2da_1.jpg,images/2da_2.jpg">
+<!--images/2da_3.jpg-->
          <button class="nav left">&#10094;</button>
          <button class="prjinfo">PRJ.PUBLIC EVENTS // PRINTABLE MEDIA</button>
 
@@ -510,9 +556,9 @@ img {
 
          <button class="nav right">&#10095;</button>
 
-    </div> 
+    </div>    
 
-<!-- CAROUSEL 13 -->
+    <!-- CAROUSEL 13 -->
     <div class="image-carousel"
            data-images="images/arc_1.jpg,images/arc_2.jpg,images/arc_3.jpg">
 
@@ -525,7 +571,9 @@ img {
 
          <button class="nav right">&#10095;</button>
 
-    </div> 
+    </div>          
+    
+    
 
 <!-- CAROUSEL 14 -->
     <div class="image-carousel"
@@ -541,6 +589,58 @@ img {
          <button class="nav right">&#10095;</button>
 
     </div> 
+    
+</section>
+
+
+<section class="gallery2">
+    <!-- CAROUSEL 3 -->
+    <div class="image-carousel"
+           data-images="images/the_1.jpg,images/the_2.jpg,images/the_3.jpg,images/the_4.jpg,images/the_5.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRJ.THERMO // ACCONIA DI CURINGA - ITALY @KIMA ARCHITECTS // NOV.2024 </button>
+
+      <div class="image-wrapper">
+        <img src="images/the_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
+    </div>
+
+            <!-- CAROUSEL 4 -->
+    <div class="image-carousel"
+           data-images="images/oak_1.jpg,images/oak_2.jpg,images/oak_3.jpg,images/oak_4.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRJ.OAKA // ATHENS - GREECE @KIMA ARCHITECTS // OCT.2025 </button>
+
+      <div class="image-wrapper">
+        <img src="images/oak_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
+    </div>
+</section>
+
+<section class="gallery3">
+
+<!-- CAROUSEL 2 -->
+    <div class="image-carousel"
+           data-images="images/met_1.jpg,images/met_2.jpg,images/met_3.jpg,images/met_4.jpg">
+
+         <button class="nav left">&#10094;</button>
+         <button class="prjinfo">PRJ.METAMORFOSIS // CORINTH - GREECE @KIMA ARCHITECTS // DEC.2023 </button>
+
+      <div class="image-wrapper">
+        <img src="images/met_1.jpg" loading="lazy">
+      </div>
+
+         <button class="nav right">&#10095;</button>
+
+    </div>
 
 <!-- CAROUSEL 1 -->
     <div class="image-carousel"
@@ -558,51 +658,20 @@ img {
 
     </div>
 
-<!-- CAROUSEL 2 -->
+    <!-- CAROUSEL 8 -->
     <div class="image-carousel"
-           data-images="images/met_1.jpg,images/met_2.jpg,images/met_3.jpg,images/met_4.jpg">
+           data-images="images/vic_1.jpg,images/vic_2.jpg,images/vic_3.jpg,images/vic_4.jpg,images/vic_5.jpg,images/vic_6.jpg">
 
          <button class="nav left">&#10094;</button>
-         <button class="prjinfo">PRJ.METAMORFOSIS // CORINTH - GREECE @KIMA ARCHITECTS // DEC.2023 </button>
+         <button class="prjinfo">PRJ.VICTORIA // ATHENS - GREECE @KIMA ARCHITECTS // AUG.2024 </button>
 
       <div class="image-wrapper">
-        <img src="images/met_1.jpg" loading="lazy">
+        <img src="images/vic_1.jpg" loading="lazy">
       </div>
 
          <button class="nav right">&#10095;</button>
 
-    </div>
-
-<!-- CAROUSEL 3 -->
-    <div class="image-carousel"
-           data-images="images/the_1.jpg,images/the_2.jpg,images/the_3.jpg,images/the_4.jpg,images/the_5.jpg">
-
-         <button class="nav left">&#10094;</button>
-         <button class="prjinfo">PRJ.THERMO // ACCONIA DI CURINGA - ITALY @KIMA ARCHITECTS // NOV.2024 </button>
-
-      <div class="image-wrapper">
-        <img src="images/the_1.jpg" loading="lazy">
-      </div>
-
-         <button class="nav right">&#10095;</button>
-
-    </div>
-
-        <!-- CAROUSEL 4 -->
-    <div class="image-carousel"
-           data-images="images/oak_1.jpg,images/oak_2.jpg,images/oak_3.jpg,images/oak_4.jpg">
-
-         <button class="nav left">&#10094;</button>
-         <button class="prjinfo">PRJ.OAKA // ATHENS - GREECE @KIMA ARCHITECTS // OCT.2025 </button>
-
-      <div class="image-wrapper">
-        <img src="images/oak_1.jpg" loading="lazy">
-      </div>
-
-         <button class="nav right">&#10095;</button>
-
-    </div>
-
+    </div> 
 
     <!-- CAROUSEL 5 -->
     <div class="image-carousel"
@@ -650,24 +719,10 @@ img {
 
     </div>
 
- <!-- CAROUSEL 8 -->
-    <div class="image-carousel"
-           data-images="images/vic_1.jpg,images/vic_2.jpg,images/vic_3.jpg,images/vic_4.jpg,images/vic_5.jpg,images/vic_6.jpg">
-
-         <button class="nav left">&#10094;</button>
-         <button class="prjinfo">PRJ.VICTORIA // ATHENS - GREECE @KIMA ARCHITECTS // AUG.2024 </button>
-
-      <div class="image-wrapper">
-        <img src="images/vic_1.jpg" loading="lazy">
-      </div>
-
-         <button class="nav right">&#10095;</button>
-
-    </div> 
-
+ 
 </section>
 
-<section class="gallerytriple">
+<section class="gallery4">
 
 <!-- CAROUSEL 15 PIC ONLY -->
     <div class="image-carousel"
@@ -774,6 +829,11 @@ WWW.PETROSKLAMPANIS.COM
 
 </div>
 
+</section>
+
+<section class="spotify-section">
+    <h1 class>MUSIC</h1>
+    <h2 class>OFFICIAL RELEASES</h2>
 </section>
 
 <section class="spotify">
